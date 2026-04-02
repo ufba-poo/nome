@@ -1,16 +1,21 @@
-    name: GitHub Classroom Workflow
+name: GitHub Classroom Workflow
 
-    on: [push]
+on: [push]
 
-    jobs:
-      build:
-        name: Autograding
-        runs-on: ubuntu-latest
-        steps:
-          - name: Baixa código
-            uses: actions/checkout@v2
-          - name: Instala dependências
-            run: mvn package -B -ntp -Dmaven.test.skip=true
-          - name: Avalia respostas
-            uses: education/autograding@v1
+permissions:
+  checks: write
+  actions: read
+  contents: read
+  
+jobs:
+  build:
+    name: Autograding
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixa código
+        uses: actions/checkout@v2
+      - name: Instala dependências
+        run: mvn package -B -ntp -Dmaven.test.skip=true
+      - name: Avalia respostas
+        uses: education/autograding@v1
 
